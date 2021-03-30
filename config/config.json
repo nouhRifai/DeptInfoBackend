@@ -1,9 +1,9 @@
 {
   "development": {
-    "username": "root",
-    "password": "Youknjsgot97",
-    "database": "projet__integre",
-    "host": "localhost",
+    "username": "uzdjbdvq9l9ifuiy",
+    "password": "02vd0jMEvgAZh6o3DH3u",
+    "database": "bvosemjzp8fybydmh2km",
+    "host": "bvosemjzp8fybydmh2km-mysql.services.clever-cloud.com",
     "dialect": "mysql",
     "operatorsAliases": 0
   },
