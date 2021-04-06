@@ -15,4 +15,14 @@ router.get('/', function (req, res, next) {
     }).then(document => res.send(document));
 });
 
+/* GET users listing. */
+router.get('/info', function (req, res, next) {
+    const titre = req.query.titre;
+    db.document.findAll({
+        where: {
+            titre: titre
+        }
+    }).then(document => res.send(document));
+});
+
 module.exports = router;

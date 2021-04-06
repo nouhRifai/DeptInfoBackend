@@ -38,20 +38,27 @@ app.use('/document', documentRouter);
 
 app.post('/upload', (req, res, next) => {
     console.log(req);
-    let imageFile = req.files.file;
+    let pdfFile = req.files.file;
 
-    imageFile.mv(`public/documents__tableau__affichage/${req.body.titre}.pdf`, function (err) {
+    pdfFile.mv(`public/documents__tableau__affichage/${req.body.titre}.pdf`, function (err) {
         if (err) {
             return res.status(500).send(err);
         }
         const promotions = JSON.parse(req.body.promotions).filter((promotion) => promotion.isChecked === true);
         promotions.forEach((promotion) => {
-            db.document.create({
-                typeDocument: req.body.typeDocument,
-                titre: req.body.titre,
-                url: `public/documents__tableau__affichage/${req.body.titre}.pdf`,
-                promotion: promotion.value,
-            }).then(submittedDocument => console.log(submittedDocument));
+            Object.keys(promotion.semestre).map(key => {
+                if (promotion.semestre[key]) {
+                    db.document.create({
+                        typeDocument: req.body.typeDocument,
+                        titre: req.body.titre,
+                        url: `public/documents__tableau__affichage/${req.body.titre}.pdf`,
+                        promotion: promotion.value,
+                        description: req.body.description,
+                        semestre: key,
+                    }).then(submittedDocument => console.log(submittedDocument));
+                }
+            });
+
         });
 
         res.json({file: `public/documents__tableau__affichage/${req.body.titre}.pdf`});

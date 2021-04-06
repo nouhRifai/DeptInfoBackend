@@ -22,6 +22,14 @@ module.exports = (sequelize, DataTypes) => {
         promotion: {
             type: DataTypes.STRING,
 
+        },
+        semestre: {
+            type: DataTypes.STRING,
+
+        },
+        description: {
+            type: DataTypes.STRING,
+
         }
     });
     return document;
